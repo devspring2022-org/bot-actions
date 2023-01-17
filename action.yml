@@ -22,9 +22,13 @@ inputs:
 branding:
   icon: 'book'  
   color: 'gray-dark'
-
 runs:
-  using: 'composite'
-  steps:
-    - run:  docker run --rm --network=host -v ${PR_BOT_CONFIG_PATH}:/config devspring2022/pr-automation:latest python3.8 bot.py ${{ toJson(github.event.inputs) }}
-      shell: bash
+  using: 'docker'
+  image: 'devspring2022/pr-automation'
+  args:
+    - --rm --network=host -v ${PR_BOT_CONFIG_PATH}:/config
+#runs:
+#  using: 'composite'
+ # steps:
+ #   - run:  docker run --rm --network=host -v ${PR_BOT_CONFIG_PATH}:/config devspring2022/pr-automation:latest python3.8 bot.py ${{ toJson(github.event.inputs) }}
+  #    shell: bash
