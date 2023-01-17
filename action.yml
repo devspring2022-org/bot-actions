@@ -26,5 +26,5 @@ branding:
 runs:
   using: 'composite'
   steps:
-    - run:  docker run --rm --network=host -v ${PR_BOT_CONFIG_PATH}:/config devspring2022/pr-automation:latest python3.8 bot.py ${{ inputs }}
+    - run:  docker run --rm --network=host -v ${PR_BOT_CONFIG_PATH}:/config devspring2022/pr-automation:latest python3.8 bot.py ${{ ${{ fromJson(github.event.inputs) }} }}
       shell: bash
