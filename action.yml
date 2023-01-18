@@ -8,19 +8,19 @@ inputs:
     default: ''
   number-of-pr:  
     description: 'Number of pull request'
-    required: true
+    required: false
     default: '1'
   github-token:  
     description: 'Github token'
-    required: true
+    required: false
     default: "${{ github.token }}"
   repository-name:
     description: 'Full name of repo. Format.: <owner>/<name of repo>'
-    required: true
+    required: false
     default: ${{ github.event.repository.full_name }}
   author:
     description: 'login of sender'
-    required: true
+    required: false
     default: ${{ github.event.sender.login }}
 
 
