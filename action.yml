@@ -4,7 +4,7 @@ description: 'Check view of pr, such as: name of pr, commits, structure, files a
 inputs:
   flags:
     description: 'Flags for bot.py script'
-    required: false
+    required: true
     default: ''
 
 branding:
@@ -14,5 +14,5 @@ branding:
 runs:
   using: 'composite'
   steps:
-    - run:  docker run --rm --network=host -v ${PR_BOT_CONFIG_PATH}:/config devspring2022/pr-automation:latest python3.8 bot.py ${{ inputs.flags }}
+    - run:  docker run --rm --network=host -v ${PR_BOT_CONFIG_PATH}:/config devspring2022/pr-automation:latest ${{ inputs.flags }}
       shell: bash
