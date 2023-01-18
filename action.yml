@@ -5,7 +5,6 @@ inputs:
   asd:
     description: 'Arguments of bot.py script'
     required: false
-    default: ''
   number-of-pr:  
     description: 'Number of pull request'
     required: false
