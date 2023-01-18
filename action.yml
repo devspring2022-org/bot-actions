@@ -41,7 +41,5 @@ runs:
         INPUT_AUTHOR: "hi"
       uses: docker://devspring2022/pr-automation:latest
       with:
-        args: >-
-          --rm
-          --network=host
-          -v ${PR_BOT_CONFIG_PATH}:/config
+        image: docker://devspring2022/pr-automation:latest
+        options: --rm --network=host -v ${PR_BOT_CONFIG_PATH}:/config
