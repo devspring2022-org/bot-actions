@@ -27,10 +27,11 @@ runs:
   steps:
     - run:  docker run --rm --network=host -v ${PR_BOT_CONFIG_PATH}:/config devspring2022/pr-automation:latest python3.8 bot.py
       shell: bash
+      env:
+        author: "hello"
+        INPUT_AUTHOR: "hi"
 #runs:
 #  using: 'docker'
 #  image: 'docker://devspring2022/pr-automation:latest'
 #  args: ["--rm", "--network=host", "-v ${PR_BOT_CONFIG_PATH}:/config"]
-  env:
-    author: "hello"
-    INPUT_AUTHOR: "hi"
+  
