@@ -2,9 +2,13 @@
 name: 'Pull request bot checker for educational process'
 description: 'Check view of pr, such as: name of pr, commits, structure, files and so on'
 inputs:
+  operation:
+    description: 'Operation to do'
+    required: true
+    default: check_pr
   flags:
     description: 'Flags for bot.py script'
-    required: true
+    required: false
 
 branding:
   icon: 'book'  
@@ -13,5 +17,5 @@ branding:
 runs:
   using: 'composite'
   steps:
-    - run:  docker run --rm --network=host -v ${PR_BOT_CONFIG_PATH}:/config devspring2022/pr-automation:latest ${{ inputs.flags }}
+    - run:  docker run --rm --network=host -v ${PR_BOT_CONFIG_PATH}:/config devspring2022/pr-automation:latest ${{ inputs.operation }} ${{ inputs.flags }}
       shell: bash
