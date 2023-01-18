@@ -28,17 +28,8 @@ branding:
   #steps:
     #- run:  docker run --rm --network=host -v ${PR_BOT_CONFIG_PATH}:/config devspring2022/pr-automation:latest python3.8 bot.py
       #shell: bash
-#runs:
-#  using: 'docker'
-#  image: 'docker://devspring2022/pr-automation:latest'
-#  args: ["--rm", "--network=host", "-v ${PR_BOT_CONFIG_PATH}:/config"]
 runs:
   using: 'composite'
   steps:
-  - name: Docker run
-    env:
-      author: "hello"
-    uses: addnab/docker-run-action@v3
-    with:
-      image: docker://devspring2022/pr-automation:latest
-      options: --rm --network=host -v ${PR_BOT_CONFIG_PATH}:/config
+    - run:  docker run --rm --network=host -v ${PR_BOT_CONFIG_PATH}:/config devspring2022/pr-automation:latest 321
+      shell: bash
