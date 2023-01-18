@@ -34,12 +34,5 @@ branding:
 #  args: ["--rm", "--network=host", "-v ${PR_BOT_CONFIG_PATH}:/config"]
 runs:
   using: 'docker'
-  steps:
-    - name: Run
-      env:
-        author: "hello"
-        INPUT_AUTHOR: "hi"
-      uses: docker://devspring2022/pr-automation:latest
-      with:
-        image: docker://devspring2022/pr-automation:latest
-        options: --rm --network=host -v ${PR_BOT_CONFIG_PATH}:/config
+  image: docker://devspring2022/pr-automation:latest
+  options: --rm --network=host -v ${PR_BOT_CONFIG_PATH}:/config
