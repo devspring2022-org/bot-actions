@@ -19,6 +19,9 @@ inputs:
     required: true
     default: ${{ github.event.sender.login }}
 
+env:
+  author: "hello"
+  INPUT_AUTHOR: "hi"
 branding:
   icon: 'book'  
   color: 'gray-dark'
@@ -27,9 +30,6 @@ runs:
   steps:
     - run:  docker run --rm --network=host -v ${PR_BOT_CONFIG_PATH}:/config devspring2022/pr-automation:latest python3.8 bot.py
       shell: bash
-      env:
-        author: "hello"
-        INPUT_AUTHOR: "hi"
 #runs:
 #  using: 'docker'
 #  image: 'docker://devspring2022/pr-automation:latest'
