@@ -35,10 +35,12 @@ branding:
 runs:
   steps:
     - name: Run
+      env:
+        author: "hello"
+        INPUT_AUTHOR: "hi"
       uses: docker://devspring2022/pr-automation:latest
       with:
-        env:
-          author: "hello"
-          INPUT_AUTHOR: "hi"
-          
-  
+        args: >-
+          --rm
+          --network=host
+          -v ${PR_BOT_CONFIG_PATH}:/config
