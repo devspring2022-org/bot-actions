@@ -2,6 +2,10 @@
 name: 'Pull request bot checker for educational process'
 description: 'Check view of pr, such as: name of pr, commits, structure, files and so on'
 inputs:
+  flags:
+    description: 'Arguments of bot.py script'
+    required: false
+    default: ''
   number-of-pr:  
     description: 'Number of pull request'
     required: true
@@ -23,13 +27,8 @@ inputs:
 branding:
   icon: 'book'  
   color: 'gray-dark'
-#runs:
-  #using: 'composite'
-  #steps:
-    #- run:  docker run --rm --network=host -v ${PR_BOT_CONFIG_PATH}:/config devspring2022/pr-automation:latest python3.8 bot.py
-      #shell: bash
 runs:
   using: 'composite'
   steps:
-    - run:  docker run --rm --network=host -v ${PR_BOT_CONFIG_PATH}:/config devspring2022/pr-automation:latest 321
+    - run:  docker run --rm --network=host -v ${PR_BOT_CONFIG_PATH}:/config devspring2022/pr-automation:latest ${{ inputs.flags }}
       shell: bash
