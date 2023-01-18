@@ -2,33 +2,29 @@
 name: 'Pull request bot checker for educational process'
 description: 'Check view of pr, such as: name of pr, commits, structure, files and so on'
 inputs:
-  asd:
-    description: 'Arguments of bot.py script'
-    required: false
   number-of-pr:  
     description: 'Number of pull request'
-    required: false
+    required: true
     default: '1'
   github-token:  
     description: 'Github token'
-    required: false
+    required: true
     default: "${{ github.token }}"
   repository-name:
     description: 'Full name of repo. Format.: <owner>/<name of repo>'
-    required: false
+    required: true
     default: ${{ github.event.repository.full_name }}
   author:
     description: 'login of sender'
-    required: false
+    required: true
     default: ${{ github.event.sender.login }}
-
 
 branding:
   icon: 'book'  
   color: 'gray-dark'
+
 runs:
   using: 'composite'
   steps:
-    - run: echo "${{ inputs.asd }} 3333"
-    #- run:  docker run --rm --network=host -v ${PR_BOT_CONFIG_PATH}:/config devspring2022/pr-automation:latest 123
+    - run:  docker run --rm --network=host -v ${PR_BOT_CONFIG_PATH}:/config devspring2022/pr-automation:latest python3.8 bot.py check_pr ${{ inputs.github-token }} ${{ inputs.number-of-pr }} ${{ inputs.repository-name }} ${{ inputs.author }}
       shell: bash
