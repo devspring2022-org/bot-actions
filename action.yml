@@ -25,7 +25,7 @@ branding:
 runs:
   using: 'docker'
   image: 'docker://devspring2022/pr-automation:latest'
-  args: "--help"
+  args: --help
   env:
     author: "hello"
     INPUT_AUTHOR: "hi"
