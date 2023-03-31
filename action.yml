@@ -1,0 +1,23 @@
+# action.yml
+name: 'Pull request bot checker for educational process'
+description: 'Check view of pr, such as: name of pr, commits, structure, files and so on'
+inputs:
+  command:
+    description: 'Operation to do'
+    required: true
+    default: '-help'
+  arguments:
+    description: 'Flags for bot.py script'
+    required: false
+
+branding:
+  icon: 'book'  
+  color: 'gray-dark''
+
+runs:
+  using: 'composite'
+  steps:
+    - run: |
+        cp -r $GITHUB_WORKSPACE/* /repository_files
+        docker run --rm --network=host -v ${PR_BOT_CONFIG_PATH}:/config -v ${VOLUME_NAME}:/repository_files devspring2022/pr-automation:latest ${{ inputs.command }} ${{ inputs.arguments }}
+      shell: bash
