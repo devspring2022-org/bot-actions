@@ -12,7 +12,7 @@ inputs:
 
 branding:
   icon: 'book'  
-  color: 'gray-dark''
+  color: 'gray-dark'
 
 runs:
   using: 'composite'
